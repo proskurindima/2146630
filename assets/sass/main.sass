@@ -72,10 +72,15 @@
         font-size: 13px
         line-height: 26px
         color: #333333
-        background: #B1E19B;
-        width: 50%
         border-radius: 0px 3px 3px 0px;
+        &.green
+          background-color: #B1E19B
+        &.blue
+          background-color: #ace2f8
       .item_count
+        width: 20px
+        margin-left: 40px
+        text-align: center
         font-weight: bold
         font-size: 13px
         line-height: 15px
@@ -169,6 +174,7 @@
     border-radius: 1px;
     max-width: 100%
     padding: 10px 20px
+    width: 100%
     resize: none
     display: block
   button
@@ -184,4 +190,37 @@
     line-height: 21px
     color: #333333
           
-@media
+@media all and (max-width: 420px) 
+  .app_wrapper
+    padding: 0
+  .main_wrapper
+    .header_wrapper
+      .header
+        padding-top: 0
+        .header_img
+          position: relative
+          display: block
+          margin: auto
+          top: 0
+          left: 0
+        .header_text
+          .header_title, .header_subtitle
+            text-align: center
+            margin: 0
+          .header_description
+            margin: 0px
+            padding: 8px 20px
+            text-align: center
+    .services
+      padding: 0px 20px
+    .reviews
+      .reviews_head
+        flex-wrap: wrap
+        .reviews_head_stats
+          justify-content: flex-end
+          margin-top: 10px
+          width: 100%
+    .add_review 
+      button
+        width: 100%
+        padding: 12px 0px

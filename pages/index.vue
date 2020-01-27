@@ -15,17 +15,18 @@
     <div class="services">
       <div class="services_head">Услуг</div>
       <div class="services_items">
-        <div class="services_item">
-          <div class="item_text">Ручное бронирование</div>
-          <div class="item_count">11</div>
-        </div>
-        <div class="services_item">
-          <div class="item_text">Пакетные туры</div>
-          <div class="item_count">3</div>
-        </div>
-        <div class="services_item">
-          <div class="item_text">Отели</div>
-          <div class="item_count">1</div>
+        <div 
+          class="services_item"
+          
+          v-for="(item, index) in servicesList" :key="index"
+        >
+          <div 
+            :class="item.color"
+            :style="'width: '+ computedWidth(item.count)"
+            :width="(100 / item.count) + '%'" 
+            class="item_text"
+          >{{ item.text }}</div>
+          <div class="item_count">{{ item.count }}</div>
         </div>
       </div>
       <div class="services_total">
@@ -45,36 +46,79 @@
         </div>
       </div>
       <div class="reviews_items">
-        <div class="reviews_item">
+        <div 
+          class="reviews_item"
+          v-for="(item, index) in reviews" :key="index"
+        >
           <div class="item_head">
-            <p class="name">Самуил</p>
-            <span class="date">13 октября 2011</span>
+            <p class="name">{{ item.name }}</p>
+            <span class="date">{{ item.date }}</span>
           </div>
-          <div class="item_text">Привет, Верунь! ниче себе ты крутая. фотка класс!!!! </div>
-        </div>
-        <div class="reviews_item">
-          <div class="item_head">
-            <p class="name">Лилия Семёновна</p>
-            <span class="date">14 октября 2011</span>
-          </div>
-          <div class="item_text">Вероника, здравствуйте! Есть такой вопрос: Особый вид куниц жизненно стабилизирует кинетический момент, это и есть всемирно известный центр огранки алмазов и торговли бриллиантами?</div>
-        </div>
-        <div class="reviews_item">
-          <div class="item_head">
-            <p class="name">Лилия Семёновна</p>
-            <span class="date">14 октября 2011</span>
-          </div>
-          <div class="item_text">Вероника, здравствуйте! Есть такой вопрос: Особый вид куниц жизненно стабилизирует кинетический момент?</div>
+          <div class="item_text">{{ item.text }}</div>
         </div>
       </div>
     </div>
     <div class="add_review">
-      <textarea rows='4'></textarea>
-      <button>Написать консультанту</button>
+      <textarea v-model="newReview" rows='4'></textarea>
+      <button @click="addReview">Написать консультанту</button>
     </div>
   </div>
 </template>
 
-<style lang="sass">
-  .heading 
-</style>
+<script>
+export default {
+  data: () => ({
+    newReview: '',
+    reviews: [
+      {
+        name: 'Самуил',
+        date: '13 октября 2011',
+        text: 'Привет, Верунь! ниче себе ты крутая. фотка класс!!!! ',
+      },
+      {
+        name: 'Лилия Семёновна',
+        date: '14 октября 2011',
+        text: 'Вероника, здравствуйте! Есть такой вопрос: Особый вид куниц жизненно стабилизирует кинетический момент, это и есть всемирно известный центр огранки алмазов и торговли бриллиантами?',
+      },
+      {
+        name: 'Лилия Семёновна',
+        date: '14 октября 2011',
+        text: 'Вероника, здравствуйте! Есть такой вопрос: Особый вид куниц жизненно стабилизирует кинетический момент?',
+      },
+    ],
+    servicesList: [
+      {
+        text: 'Ручное бронирование',
+        count: '11',
+        color: 'green',
+      },
+      {
+        text: 'Пакетные туры',
+        count: '3',
+        color: 'blue',
+      },
+      {
+        text: 'Отели',
+        count: '1',
+        color: 'blue',
+      },
+    ]
+  }),
+  
+  methods: {
+    addReview() {
+      let review = {
+        name: 'Анонимно',
+        date: '26 января 2020',
+        text: this.newReview
+      }
+      this.reviews.push(review)
+      this.newReview = ''
+    },
+    computedWidth(c) {
+      return ((Number(c) / 15) * 100) + '%'
+    }
+  },
+  
+}
+</script>
