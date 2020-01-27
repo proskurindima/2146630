@@ -1,4 +1,4 @@
-# dev_corp_test
+# antagosoft_test
 
 Проект создан на Nuxt.js
 
