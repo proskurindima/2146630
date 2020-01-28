@@ -1,4 +1,4 @@
-# antagosoft_test
+# test_task
 
 Проект создан на Nuxt.js
 
